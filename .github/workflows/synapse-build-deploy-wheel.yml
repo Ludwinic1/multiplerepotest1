@@ -1,1 +1,4 @@
+name: Synapse Build and Deploy Wheel
 
+on:
+  workflow_dispatch
