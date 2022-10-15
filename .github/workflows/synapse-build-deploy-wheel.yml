@@ -2,7 +2,21 @@ name: Synapse Build and Deploy Wheel
 
 on:
   workflow_dispatch
+    
+jobs:
+  download-wheel-file:
+    name: Download Wheel File
+    runs-on: windows-latest
   
 
-jobs:
-  deploy
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+
+  
+
+
