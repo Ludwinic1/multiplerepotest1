@@ -34,7 +34,7 @@ jobs:
           azPSVersion: latest
           inlineScript: |
             Get-AzContext
-            Install-Module -Name az.synapse -Force -AllowClobber
+            Import-Module Az.Synapse
             $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Package ".\my-test\pytest-7.1.3-py3-none-any.whl"
 
 
