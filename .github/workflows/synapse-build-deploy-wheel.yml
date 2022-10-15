@@ -34,8 +34,10 @@ jobs:
         with:
           azPSVersion: latest
           inlineScript: |
-            Get-AzContext
             Import-Module Az.Synapse
+            $package = Get-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Name pytest-7.1.3-py3-none-any.whl
+            Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Remove -Package $package
+
             $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Package ".\my-test\pytest-7.1.3-py3-none-any.whl"
             Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Add -Package $package 
 
