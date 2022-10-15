@@ -33,7 +33,8 @@ jobs:
         with:
           azPSVersion: latest
           inlineScript: |
-            Install-Module -Name az.synapse -Force
+            Get-AzContext
+            Install-Module -Name az.synapse -Force -AllowClobber
             $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsewsnjl1 -Package ".\my-test\pytest-7.1.3-py3-none-any.whl"
 
 
