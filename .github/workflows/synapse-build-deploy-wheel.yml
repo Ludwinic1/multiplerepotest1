@@ -33,6 +33,7 @@ jobs:
         with:
           azPSVersion: latest
           inlineScript: |
+            Select-AzSubscription -Default 126c93ce-f0a6-493c-8991-cdcbd797366d
             Get-AzContext
             Import-Module Az.Synapse
             $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Package ".\my-test\pytest-7.1.3-py3-none-any.whl"
