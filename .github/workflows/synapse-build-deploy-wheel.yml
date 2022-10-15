@@ -14,6 +14,14 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+      - name: Checkout Code 
+        uses: actions/checkout@v3
+        with:
+          repository: Ludwinic/multiplerepotest1
+          token: ${{ secrets.GITHUBPAT }}
+          ref: 'workspace_publish'
+          
 
 
 
