@@ -28,6 +28,14 @@ jobs:
           path: my-test
           token: ${{ secrets.SECONDREPOPAT }}
       
+      - name: Run Powershell Script
+        uses: azure/powershell@v1 
+        with:
+          azPSVersion: latest
+          inlineScript: |
+            Install-Module -Name az.synapse -Force
+            $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsewsnjl1 -Package ".\my-test\pytest-7.1.3-py3-none-any.whl"
+
 
           
 
