@@ -21,6 +21,13 @@ jobs:
           token: ${{ secrets.GITHUBPAT }}
           ref: 'workspace_publish'
       
+      - name: Checkout Second Repo
+        uses: actions/checkout@v3 
+        with:
+          repository: Ludwinic1/multipleRepoTest2
+          path: my-test
+          token: ${{ secrets.SECONDREPOPAT }}
+      
 
           
 
