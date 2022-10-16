@@ -1,7 +1,13 @@
 name: Synapse Build and Deploy Wheel
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      deploy-wheel: 
+        description: Option to deploy the wheel file
+        required: False 
+        type: boolean
+        default: True
     
 jobs:
   download-wheel-file:
@@ -22,14 +28,17 @@ jobs:
           token: ${{ secrets.GITHUBPAT }}
           ref: 'workspace_publish'
       
+
       - name: Checkout Second Repo
+        if: ${{ github.event.inputs.deploy-wheel }}
         uses: actions/checkout@v3 
         with:
           repository: Ludwinic1/multipleRepoTest2
           path: my-test
           token: ${{ secrets.SECONDREPOPAT }}
       
-      - name: Test Python Build 
+      - name: Test Python Build
+        if: ${{ github.event.inputs.deploy-wheel }} 
         working-directory: ./my-test
         run: |
           python -m pip install wheel 
@@ -38,6 +47,7 @@ jobs:
 
 
       - name: Run Powershell Script Real
+        if: ${{ github.event.inputs.deploy-wheel }}
         uses: azure/powershell@v1 
         with:
           azPSVersion: latest 
