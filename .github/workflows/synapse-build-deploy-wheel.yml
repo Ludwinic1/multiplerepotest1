@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.SECONDREPOPAT }}
       
       - name: Test Python Build
-        if: ${{ github.event.inputs.deploy-wheel is == "true" }} 
+        if: ${{ github.event.inputs.deploy-wheel == "true" }} 
         working-directory: ./my-test
         run: |
           python -m pip install wheel 
