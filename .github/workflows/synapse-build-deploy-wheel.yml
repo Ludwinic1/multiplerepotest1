@@ -43,7 +43,8 @@ jobs:
           azPSVersion: latest 
           inlineScript: |
             Import-Module Az.Synapse
-            Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Remove -Package My_Setup_File-1.0-py3-none-any.whl
+            $package = Get-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Name My_Setup_File-1.0-py3-none-any.whl
+            Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Remove -Package $package
             Remove-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Name My_Setup_File-1.0-py3-none-any.whl -Force
             $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Package ".\my-test\dist\My_Setup_File-1.0-py3-none-any.whl"
             Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Add -Package $package
