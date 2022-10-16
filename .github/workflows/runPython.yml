@@ -11,4 +11,5 @@ jobs:
     - name: Run Python
       run: |
         python -m pip install --upgrade pip
+        python print("HELLO, WORLD")
 
