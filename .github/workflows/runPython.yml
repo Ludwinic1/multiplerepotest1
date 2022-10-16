@@ -23,4 +23,3 @@ jobs:
 
         run: |
           python print('hello')
-          python print('yessssss')
