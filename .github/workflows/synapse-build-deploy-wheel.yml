@@ -29,6 +29,13 @@ jobs:
           path: my-test
           token: ${{ secrets.SECONDREPOPAT }}
       
+      - name: Test Python Build 
+        working-directory: ./my-test
+        run: |
+          python -m pip install wheel 
+          setup.py bdist_wheel 
+
+      
       - name: Run Powershell Script
         uses: azure/powershell@v1 
         with:
