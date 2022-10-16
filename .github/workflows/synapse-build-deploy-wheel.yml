@@ -11,6 +11,7 @@ on:
     
 jobs:
   download-wheel-file:
+    if: ${{ github.event.inputs.deploy-wheel == 'true' }}
     name: Download Wheel File
     runs-on: windows-latest
   
