@@ -30,7 +30,7 @@ jobs:
       
 
       - name: Checkout Second Repo
-        if: ${{ github.event.inputs.deploy-wheel }}
+        if: ${{ github.event.inputs.deploy-wheel == True }}
         uses: actions/checkout@v3 
         with:
           repository: Ludwinic1/multipleRepoTest2
@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.SECONDREPOPAT }}
       
       - name: Test Python Build
-        if: ${{ github.event.inputs.deploy-wheel }} 
+        if: ${{ github.event.inputs.deploy-wheel == True }} 
         working-directory: ./my-test
         run: |
           python -m pip install wheel 
@@ -47,7 +47,7 @@ jobs:
 
 
       - name: Run Powershell Script Real
-        if: ${{ github.event.inputs.deploy-wheel }}
+        if: ${{ github.event.inputs.deploy-wheel == True }}
         uses: azure/powershell@v1 
         with:
           azPSVersion: latest 
