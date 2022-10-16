@@ -19,6 +19,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUBPAT }}
 
-      
+      - name: Run Python
+
         run: |
           python print('hello')
+          python print('yessssss')
