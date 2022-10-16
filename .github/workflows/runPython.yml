@@ -10,5 +10,5 @@ jobs:
     steps:
     - name: Run Python
       run: |
-        python print('hello')
+        python -m pip install --upgrade pip
 
