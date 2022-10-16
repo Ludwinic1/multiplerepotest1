@@ -5,9 +5,9 @@ on:
     inputs:
       deploy-wheel: 
         description: Option to deploy the wheel file
-        required: False 
+        required: True 
         type: boolean
-        default: True
+        default: False
     
 jobs:
   download-wheel-file:
