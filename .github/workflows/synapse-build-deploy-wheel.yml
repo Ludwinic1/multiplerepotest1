@@ -35,16 +35,29 @@ jobs:
           python -m pip install wheel 
           python setup.py bdist_wheel 
 
-      
 
-      - name: Run Powershell Script 
+
+      - name: Run Powershell Script Real
         uses: azure/powershell@v1 
         with:
           azPSVersion: latest 
           inlineScript: |
             Import-Module Az.Synapse
+            Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Remove -Package My_Setup_File-1.0-py3-none-any.whl
+            Remove-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Name My_Setup_File-1.0-py3-none-any.whl -Force
             $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Package ".\my-test\dist\My_Setup_File-1.0-py3-none-any.whl"
             Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Add -Package $package
+
+      
+
+      # - name: Run Powershell Script # This works!
+      #   uses: azure/powershell@v1 
+      #   with:
+      #     azPSVersion: latest 
+      #     inlineScript: |
+      #       Import-Module Az.Synapse
+      #       $package = New-AzSynapseWorkspacePackage -WorkspaceName synapsemultiplereposws -Package ".\my-test\dist\My_Setup_File-1.0-py3-none-any.whl"
+      #       Update-AzSynapseSparkPool -WorkspaceName synapsemultiplereposws -Name sparkpool1 -PackageAction Add -Package $package
 
 
       # - name: Run Powershell Script
