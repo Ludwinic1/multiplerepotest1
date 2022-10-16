@@ -1,5 +1,4 @@
-name: Build and Deploy Wheel
-
+name: PythonRun
 on:
   workflow_dispatch
 
@@ -7,19 +6,9 @@ jobs:
   Build-and-deploy-Wheel:
     name: Build Wheel
     runs-on: ubuntu-latest
-  
+
     steps:
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-      - name: Checkout Code 
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUBPAT }}
+    - name: Run Python
+      run: |
+        python print('hello')
 
-      - name: Run Python
-
-        run: |
-          python print('hello')
